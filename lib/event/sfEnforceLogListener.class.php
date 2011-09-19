@@ -67,6 +67,6 @@ class sfEnforceLogListener
    */
   public static function enforceLogMail(sfEvent $event)
   {
-    return ($event->getSubject() instanceof sfMailerMessageLoggerPlugin);
+    return ($event->getSubject()->getSubject() instanceof sfMailerMessageLoggerPlugin);
   }
 }
