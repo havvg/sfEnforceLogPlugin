@@ -57,4 +57,16 @@ class sfEnforceLogListener
       }
     }
   }
+
+  /**
+   * Enforce the logging of mail log entries.
+   *
+   * @param sfEvent $event
+   *
+   * @return bool Whether the event is related to the mail logging.
+   */
+  public static function enforceLogMail(sfEvent $event)
+  {
+    return ($event->getSubject() instanceof sfMailerMessageLoggerPlugin);
+  }
 }
