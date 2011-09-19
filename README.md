@@ -21,6 +21,7 @@ class ProjectConfiguration extends sfProjectConfiguration
 ```
 
 Afterwards you have to register the listener to the ``application.log`` event.
+Make sure this listener is added before any actual log listener (such as sfLogger).
 
 ```php
 <?php // config/ProjectConfiguration.class.php
@@ -28,9 +29,9 @@ class ProjectConfiguration extends sfProjectConfiguration
 {
   public function setup()
   {
-    // ..
-    
     $this->getEventDispatcher()->connect('application.log', array('sfEnforceLogListener', 'listenToLogEvent'));
+
+    // ..
   }
 }
 ```
@@ -49,7 +50,7 @@ class ProjectConfiguration extends sfProjectConfiguration
   public function setup()
   {
     // ..
-    
+
     $this->getEventDispatcher()->connect('enforcelog.define', array('sfEnforceLogListener', 'enforceLogMail'));
   }
 }

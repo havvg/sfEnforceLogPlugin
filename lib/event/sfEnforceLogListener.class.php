@@ -20,12 +20,6 @@ class sfEnforceLogListener
       return;
     }
 
-    // Do not act on dispatched application.log event.
-    if (!empty($event['enforced']))
-    {
-      return;
-    }
-
     $context = sfContext::getInstance();
 
     // The minimum log priority of a log entry to be logged without enforcement.
@@ -51,9 +45,6 @@ class sfEnforceLogListener
       if ($defineEvent->isProcessed())
       {
         $event['priority'] = $logLevel;
-        $event['enforced'] = true;
-
-        $context->getEventDispatcher()->notify($event);
       }
     }
   }
